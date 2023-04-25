@@ -1,0 +1,79 @@
+
+### **Register functionality Testsuit Overview**
+
+#******************** Settings ************************
+
+*** Settings ***
+
+Documentation  User Registration Test scenario with verification, valid and invalid credentials.
+
+
+Pre Condition	Open Browser
+Post Condition	Close All Browsers
+Tags	Registration, TS-1-Registeration(For Jira project management issue reference)
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+SignUpUrl = https://gitlab.com/users/sign_up
+First name = Pekka
+Last name = Komulainen
+Username = PekkaKM
+Email = ****@laurea.fi
+Invalid_Email = ****.laurea@fi
+Password = **********
+Empty = 
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+
+# Positive Test
+
+	Register user with valid username and password 
+		Navigate to Sign Up Page	SignUpUrl
+		Input First name	First name
+		Input Last name		Last name
+		Input Username		Username
+		Input Email		Email
+		Input Password		Password
+		Submit Form
+		Should be successful registration
+
+# Negative Test
+
+	Register user with same Username as before 
+		Navigate to Sign Up Page	SignUpUrl
+		Input First name	First name
+		Input Last name		Last name
+		Input Username		Username
+		Input Email		Email
+		Input Password		Password
+		Submit Form
+		Can't register -> Username is taken
+
+	Register user with empty password 
+		Navigate to Sign Up Page	SignUpUrl
+		Input First name	First name
+		Input Last name		Last name
+		Input Username		Username
+		Input Email		Email
+		Input Password		EMPTY
+		Submit Form
+		Can't register -> Must choose password
+
+	Register user with invalid email 
+		Navigate to Sign Up Page	SignUpUrl
+		Input First name	First name
+		Input Last name		Last name
+		Input Username		Username
+		Input Email		Invalid_Email
+		Input Password		Password
+		Submit Form
+		"This email address does not look right, are you sure you
+		typed it correctly?" -text beneath email field but still allowed to register
+			
+
+
