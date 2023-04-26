@@ -1,0 +1,72 @@
+
+### **Issue functionality Testsuit Overview**
+
+#******************** Settings ************************
+
+*** Settings ***
+Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+
+Pre Condition	User must have a project made 
+Post Condition	Log out from Gitlab
+Tags		Issue, TS-4-Issue (For Jira project management issue reference)
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+
+Title = New_Issue
+New Title = Newer_Issue
+Description = Testing issue
+Assignee = Pekka Komulainen
+Due date = 26.04.2023
+Milestone = not selected
+Labels = not selected
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create issue
+		Login to Gitlab
+		From left sidebar select Issues
+		Click Select project to create issue
+		Then select New issue in selected project
+		Input Title 	Title
+		Input Description	Description
+		Select Assignee		Assignee
+		Select Due date		Due date
+		Select Milestone if needed
+		Select Labels if needed
+		Click Create issue -> Issue created just now by Pekka Komulainen
+		
+ 	Update name of issue
+		From Issue page select New_Issue
+		Select Edit for New_Issue	
+		Update name in the name field
+		Select Save changes -> Pekka Komulainen changed title from New_Issue to Newer_Issue just now
+		
+	Create second issue with previous updated name
+		From left sidebar select Issues
+		Click Select project to create issue
+		Then select New issue in selected project
+		Input Title 	New Title
+		Input Description	Description
+		Select Assignee		Assignee
+		Select Due date		Due date
+		Select Milestone if needed
+		Select Labels if needed
+		Click Create issue -> Issue created just now by Pekka Komulainen
+		
+    	Delete first issue
+		From left sidebar select Issues
+		Select first issue from issue list
+		Select three dots icon
+		Select delete issue
+		From pop up window select Delete issue -> The issue was successfully deleted.
+		

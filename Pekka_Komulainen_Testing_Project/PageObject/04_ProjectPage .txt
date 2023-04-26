@@ -1,0 +1,99 @@
+
+### **Create Project functionality Testsuit Overview**
+
+#******************** Settings ************************
+
+*** Settings ***
+
+Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Documentation	
+
+# TODO: Write Precondition, Postcondition, Tags
+
+Pre Condition	Login to Gitlab 
+Post Condition	Close Browser
+Tags	Blank Project TS-3-Project (For Jira project management issue reference)
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Project creation field variables
+Project_Name = TestProject
+Project_URL = https://gitlab.com/jo1875817‎/testproject
+Visibility_Level = Private
+Project_Configuration = Initialize repository with a README
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive and Negative Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create blank project
+		Sign in to Gitlab
+		From front page push New project button
+		Choose create blank project
+		Input project name	Project_Name
+		Choose visibility level		Visibility_Level
+		Choose project configuration		Project_Configuration
+		Create project
+		Blank project is created
+
+	Navigate
+		Go to settings
+		Go to general settings
+		General setting contains project name
+		
+	Insert  project name  Project_Nam
+		Change project name -> Project_Nam
+		Push Save changes button
+		Project 'Project_Nam' was successfully updated.
+
+ 	Create template project 
+		From front page push New project button
+		Choose create from template project
+		Choose template -> Chose NodeJS Express
+		Input project name	Project_name
+		Choose visibility level		Visibility_Level
+		Create project
+		Template project is created
+
+	Update name of template project
+		Go to settings
+		Go to general settings
+		General setting contains project name	
+		Change project name -> Testi
+		Push Save changes button
+		Project 'Testi' was successfully updated.
+
+	Delete template project
+		Go to settings
+		Go to general settings
+		Push expand on Advanced settings
+		Push Delete project button
+		Enter required text to the text field
+		Delete project
+		Project 'jo / Testi-deleted-45473938' will be deleted on 2023-05-02
+		
+
+# Negative Test examples are below write test process steps for each below test case
+
+	Create a blank project with the previous same name
+		From front page push New project button
+		Choose create blank project
+		Choose create blank project
+		Input project name	Project_Name
+		Choose visibility level		Visibility_Level
+		Choose project configuration		Project_Configuration
+		Create project
+		Project cannot be created ->
+		The form contains the following errors:
+		Project namespace name has already been taken
+		Name has already been taken
+
